@@ -1,6 +1,11 @@
 <?php
 
-class Remessax_Factory_Itau extends Remessax_Factory {
+namespace Skynix\Remessax\Factory;
+
+use Skynix\Remessax\Factory;
+use Skynix\Remessax\Remessa\Itau as RemessaItau;
+
+class Itau extends Factory {
 
 	protected function createRemessa(){
 		
@@ -8,7 +13,7 @@ class Remessax_Factory_Itau extends Remessax_Factory {
 
 		$titulos = $this->getTitulos();
 		
-		$remessa = new Remessax_Remessa_Itau($config,$titulos);
+		$remessa = new RemessaItau($config,$titulos);
 		return $remessa;	
 	}
 	

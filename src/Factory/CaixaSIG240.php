@@ -1,6 +1,11 @@
- <?php
+<?php
 
-class Remessax_Factory_CaixaSIG240 extends Remessax_Factory {
+namespace Skynix\Remessax\Factory;
+
+use Skynix\Remessax\Factory;
+use Skynix\Remessax\Remessa\CaixaSIG240 as RemessaCaixaSIG240;
+
+class CaixaSIG240 extends Factory {
 
 	protected function createRemessa(){
 		
@@ -8,7 +13,7 @@ class Remessax_Factory_CaixaSIG240 extends Remessax_Factory {
 
 		$titulos = $this->getTitulos();
 		
-		$remessa = new Remessax_Remessa_CaixaSIG240($config,$titulos);
+		$remessa = new RemessaCaixaSIG240($config,$titulos);
 		$remessa->setRemessaId($this->getNextId());
 		return $remessa;	
 	}

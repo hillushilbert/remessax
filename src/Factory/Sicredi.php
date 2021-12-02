@@ -1,6 +1,11 @@
 <?php
 
-class Remessax_Factory_Sicredi extends Remessax_Factory {
+namespace Skynix\Remessax\Factory;
+
+use Skynix\Remessax\Factory;
+use Skynix\Remessax\Remessa\Sicredi as RemessaSicredi;
+
+class Sicredi extends Factory {
 
 	protected function createRemessa(){
 		
@@ -8,7 +13,7 @@ class Remessax_Factory_Sicredi extends Remessax_Factory {
 
 		$titulos = $this->getTitulos();
 		
-		$remessa = new Remessax_Remessa_Sicredi($config,$titulos);
+		$remessa = new RemessaSicredi($config,$titulos);
 		return $remessa;	
 	}
 	

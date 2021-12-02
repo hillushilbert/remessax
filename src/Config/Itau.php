@@ -1,6 +1,11 @@
 <?php
 
-class Remessax_Config_Itau extends Remessax_Config {
+namespace Skynix\Remessax\Config;
+
+use Skynix\Remessax\Config;
+
+
+class Itau extends Config {
 	
 	/*
 	public $mensagem;

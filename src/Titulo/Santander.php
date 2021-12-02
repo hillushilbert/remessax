@@ -1,6 +1,10 @@
 <?php
 
-class Remessax_Titulo_Santander extends Remessax_Titulo {
+namespace Skynix\Remessax\Titulo;
+
+use Skynix\Remessax\Titulo;
+
+class Santander extends Titulo {
 	
 	public $cod_movimento;
 	public $vencimento_antecipado;

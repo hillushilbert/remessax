@@ -1,6 +1,10 @@
 <?php
 
-class Remessax_Titulo_Sicredi extends Remessax_Titulo {
+namespace Skynix\Remessax\Titulo;
+
+use Skynix\Remessax\Titulo;
+
+class Sicredi extends Titulo {
 	
 	public $cod_movimento;
 	public $vencimento_antecipado;

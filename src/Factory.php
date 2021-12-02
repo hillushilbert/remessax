@@ -1,6 +1,10 @@
 <?php
 
-abstract class Remessax_Factory {
+namespace Skynix\Remessax;
+
+use Exception;
+
+abstract class Factory {
 
 	private $Db;
 	protected $aTitulos;
@@ -9,7 +13,7 @@ abstract class Remessax_Factory {
 	protected $periodo_fim;
 	protected $id_remessa;
 	
-	public function __construct($adodb,Remessax_Config $config,Remessax_TituloList $aTitulos){
+	public function __construct($adodb,Config $config,TituloList $aTitulos){
 		$this->Db = $adodb;
 		$this->config = $config;
 		$this->aTitulos = $aTitulos;
@@ -50,7 +54,7 @@ abstract class Remessax_Factory {
 	/**
 	 * getConfig
 	 *
-	 * Retorna objeto stdclass com as informações de configuração do banco
+	 * Retorna objeto stdclass com as informaï¿½ï¿½es de configuraï¿½ï¿½o do banco
 	 * para emissao do arquivo de remessa
 	 *
 	 */
@@ -71,7 +75,7 @@ abstract class Remessax_Factory {
 		$ds = $this->Lookup($sSQL);
 	
 		//if(!empty($ds[0][0]) && $ds[0][0] > 0)
-		//throw new Exception("Remessa já foi criada!");
+		//throw new Exception("Remessa jï¿½ foi criada!");
 	
 		$this->id_remessa = $this->getNextId();
 		
@@ -90,16 +94,16 @@ abstract class Remessax_Factory {
 	public function makeRemessa($data_ini,$data_fim){
 
 		if(empty($data_ini) || empty($data_fim))
-		throw new Exception('Não foi informado a data de geração do arquivo de remssa!');
+		throw new Exception('Nï¿½o foi informado a data de geraï¿½ï¿½o do arquivo de remssa!');
 		
 		$this->periodo_ini = $data_ini;
 		$this->periodo_fim = $data_fim;
 		
 		if($this->config === null)
-		throw new Exception('Configuração não informada!');
+		throw new Exception('Configuraï¿½ï¿½o nï¿½o informada!');
 		
 		if($this->aTitulos === null)
-		throw new Exception('Titulos não informados!');
+		throw new Exception('Titulos nï¿½o informados!');
 		
 		try{
 			//$this->Db->debug = true;
@@ -110,7 +114,7 @@ abstract class Remessax_Factory {
 			// grava registro de arquuivo de remessa
 			$ret = $this->InsertRemessa(basename($remessa->getFilename()));
 			if($ret === false) throw new Exception("erro no header");
-			// grava registros da amarração dos arquivos de remessa com os titulos
+			// grava registros da amarraï¿½ï¿½o dos arquivos de remessa com os titulos
 			$ret = $this->InsertRemessaTitulos();
 			if($ret === false) throw new Exception("erro nos itens");
 			

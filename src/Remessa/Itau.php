@@ -1,15 +1,19 @@
 <?php
 
+namespace Skynix\Remessax\Remessa;
+
+use Skynix\Remessax\Remessa;
+
 /*
 * @descr: Gera o arquivo de remessa para cobranca no padrao CNAB 400 vers. 7.0 ITAU
 */
 
-class Remessax_Remessa_Itau extends Remessax_Remessa {
+class Itau extends Remessa {
 
 	/**
 	 * setFileName
 	 *
-	 * Define o nome do arquivo de remessa que será gerado
+	 * Define o nome do arquivo de remessa que serï¿½ gerado
 	 *
 	 * @return void
 	 */
@@ -52,12 +56,12 @@ class Remessax_Remessa_Itau extends Remessax_Remessa {
 		$conteudo .= $this->formatNumber($config->conta_dv,1);	//dac                    digito autoconf conta  038 038        9(01)
 		$conteudo .= $this->complementoRegistro(8,"brancos");	//complemento registro     						039 046        X(08)
 		$conteudo .= $this->formatString($config->razao_social,30);	//nome da empresa            					047 076        X(30)
-		$conteudo .= 341;            							//codigo banco            Nº BANCO CÂMARA COMP. 077 079        9(03)
+		$conteudo .= 341;            							//codigo banco            Nï¿½ BANCO Cï¿½MARA COMP. 077 079        9(03)
 		$conteudo .= $this->formatString('BANCO ITAU SA',15);   //nome do banco por ext.    					080 094        X(15)
 		$conteudo .= $this->formatData();						//data geracao arquivo    						095 100        9(06)
 		$conteudo .= $this->complementoRegistro(294,"brancos");	// complemento de registr    					101 394        X(294)
 		$conteudo .= $this->sequencial(1);        				// numero sequencial    registro no arquivo     395 400        9(06)
-		$conteudo .= chr(13).chr(10); 							//essa é a quebra de linha
+		$conteudo .= chr(13).chr(10); 							//essa ï¿½ a quebra de linha
 
 		$this->conteudo = $conteudo;
 	}
@@ -121,23 +125,23 @@ class Remessax_Remessa_Itau extends Remessax_Remessa {
 			$conteudo .= $this->formatNumber($config->conta,5);                     // conta                        numero da conta            	024 028        9(05)
 			$conteudo .= $this->formatNumber($config->conta_dv,1);                  // dac                            dig autoconf conta        029 029        9(01)
 			$conteudo .= $this->complementoRegistro(4,"brancos");                   // brancos                        complemento registro     	030 033        X(04)
-			$conteudo .= $this->complementoRegistro(4,"zeros");                     // CÓD.INSTRUÇÃO/ALEGAÇÃO A SER CANC NOTA 27             	034 037        9(04)
-			$conteudo .= $this->formatNumber($cliente->id_titulo,25);               // USO / IDENT. DO TÍTULO NA EMPRESA NOTA 2            		038 062        X(25)
+			$conteudo .= $this->complementoRegistro(4,"zeros");                     // Cï¿½D.INSTRUï¿½ï¿½O/ALEGAï¿½ï¿½O A SER CANC NOTA 27             	034 037        9(04)
+			$conteudo .= $this->formatNumber($cliente->id_titulo,25);               // USO / IDENT. DO Tï¿½TULO NA EMPRESA NOTA 2            		038 062        X(25)
 			if(in_array($config->carteira,array('104','138','112','147'))){
 				$conteudo .= $this->complementoRegistro(8,"zeros");
 			}else{
 				$conteudo .= $this->formatNumber($cliente->id_titulo,8);            // NOSSO NUMERO / ID TITULO DO BANCO NOTA 3            		063 070        9(08)
 			}
 			$conteudo .= '0000000000000';                                        	// QTDE MOEDA            NOTA 4                            	071 083        9(08)V9(5)
-			$conteudo .= $this->formatNumber($config->carteira,3);                  // nº da carteira        nº carteira banco                	084 086        9(03)            
+			$conteudo .= $this->formatNumber($config->carteira,3);                  // nï¿½ da carteira        nï¿½ carteira banco                	084 086        9(03)            
 			$conteudo .= $this->complementoRegistro(21,"brancos");                  // uso do banco ident. oper. no banco                    	087 107        X(21)
 			$conteudo .= 'I';                                                    	// carteira codigo da carteira NOTA 5                    	108 108        X(01)
 			$conteudo .= '01';                                                     	// codigo ocorrencia / ident da ocorrencia NOTA 6        	109 110        9(02)
-			$conteudo .= $this->complementoRegistro(10,'brancos');                  // nº documento / nº documento de cobranca    NOTA 18       111 120        X(10)
+			$conteudo .= $this->complementoRegistro(10,'brancos');                  // nï¿½ documento / nï¿½ documento de cobranca    NOTA 18       111 120        X(10)
 			$conteudo .= $this->formatData($cliente->vencimento);                   // vencimento data venc. titulo NOTA 7                    	121 126        9(06)
 			$conteudo .= $this->formatValor($cliente->valor,13);                    // valor titulo            valor nominal NOTA 8            	127 139        9(11)V9(2)
-			$conteudo .= 341;                                                    	// codigo do banco        Nº BANCO CÂMARA COMP.            	140    142        9(03)         
-			$conteudo .= $this->zeros(0,5);                                         //agencia cobradora / ONDE TÍTULO SERÁ COBRADO NOTA 9    	143 147        9(05)
+			$conteudo .= 341;                                                    	// codigo do banco        Nï¿½ BANCO Cï¿½MARA COMP.            	140    142        9(03)         
+			$conteudo .= $this->zeros(0,5);                                         //agencia cobradora / ONDE Tï¿½TULO SERï¿½ COBRADO NOTA 9    	143 147        9(05)
 			$conteudo .= 15;                                                    	// especie        especie do titulo NOTA 10                	148 149        X(02)
 			$conteudo .= 'A'; 														// aceite ident de titutlo aceito (A=aceite,N=nao aceite)   150 150        X(01)
 			$conteudo .= $this->formatData(date('Y-m-d'));         					// data emissao titulo     NOTA 31                    		151 156        9(06)
@@ -146,7 +150,7 @@ class Remessax_Remessa_Itau extends Remessax_Remessa {
 			//$conteudo .= '86';            											// instrucao 2            NOTA 11                    		159 160        X(02)
 			$conteudo .= '00';            											// instrucao 2            NOTA 11                    		159 160        X(02)
 			$conteudo .= '0000000000000';											// juros de 1 dia    valor de mora NOTA 12    				161 173        9(11)V9(02)
-			$conteudo .= $this->zeros(0,6);    										// desconto até            data limite p/ descont    		174 179        9(06)
+			$conteudo .= $this->zeros(0,6);    										// desconto atï¿½            data limite p/ descont    		174 179        9(06)
 			$conteudo .= '0000000000000';											// valor desconto        a ser concedido NOTA 13 			180 192        9(11)V9(02)
 			$conteudo .= '0000000000000';    										// valor I.O.F RECOLHIDO P NOTAS SEGURO NOTA 14    			193 205        9(11)V9(02)
 			$conteudo .= '0000000000000';    										// abatimento            a ser concedido NOTA 13    		206 218        9(11)V9(02)
@@ -165,7 +169,7 @@ class Remessax_Remessa_Itau extends Remessax_Remessa {
 			$conteudo .= $this->zeros(0,2);            								// prazo                qtde de dias NOTA 11(A)    			392 393        9(02)            
 			$conteudo .= $this->complementoRegistro(1,"brancos");        			// brancos                complemento de registr.    		394 394     	X(01)
 			$conteudo .= $this->sequencial($i++);            						// numero sequencial    do registro no arquivo    			395 400        9(06)
-			$conteudo .= chr(13).chr(10); 											//essa é a quebra de linha
+			$conteudo .= chr(13).chr(10); 											//essa ï¿½ a quebra de linha
 			$this->val_total += $cliente->valor;
 
 			$this->tot_linhas++;		

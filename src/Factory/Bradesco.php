@@ -1,6 +1,11 @@
 <?php
 
-class Remessax_Factory_Bradesco extends Remessax_Factory {
+namespace Skynix\Remessax\Factory;
+
+use Skynix\Remessax\Factory;
+use Skynix\Remessax\Remessa\Bradesco as RemessaBradesco;
+
+class Bradesco extends Factory {
 
 	protected function createRemessa(){
 		
@@ -8,7 +13,7 @@ class Remessax_Factory_Bradesco extends Remessax_Factory {
 
 		$titulos = $this->getTitulos();
 		
-		$remessa = new Remessax_Remessa_Bradesco($config,$titulos);
+		$remessa = new RemessaBradesco($config,$titulos);
 		$remessa->setContador($this->getNextId());
 		return $remessa;	
 	}

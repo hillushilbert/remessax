@@ -1,6 +1,11 @@
 <?php
 
-class Remessax_Factory_Sicoob240 extends Remessax_Factory {
+namespace Skynix\Remessax\Factory;
+
+use Skynix\Remessax\Factory;
+use Skynix\Remessax\Remessa\Sicoob240 as RemessaSicoob240;
+
+class Sicoob240 extends Factory {
 
 	protected function createRemessa(){
 		
@@ -8,7 +13,7 @@ class Remessax_Factory_Sicoob240 extends Remessax_Factory {
 
 		$titulos = $this->getTitulos();
 		
-		$remessa = new Remessax_Remessa_Sicoob240($config,$titulos);
+		$remessa = new RemessaSicoob240($config,$titulos);
 		$remessa->setRemessaId($this->getNextId());
         /*
         if(!empty($remessa->getMensagens())){

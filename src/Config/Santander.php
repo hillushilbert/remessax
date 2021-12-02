@@ -1,6 +1,6 @@
 <?php
 
-class Remessax_Config_Santander extends Remessax_Config {
+class Santander extends Config {
 	
 	public $tp_inscricao;
 	public $cod_transmissao;

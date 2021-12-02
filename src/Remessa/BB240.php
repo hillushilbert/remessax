@@ -1,10 +1,14 @@
 <?php
 
+namespace Skynix\Remessax\Remessa;
+
+use Skynix\Remessax\Remessa;
+
 /*
 * @descr: Gera o arquivo de remessa para cobranca no padrao CNAB 240 vers. BB
 */
 
-class Remessax_Remessa_BB240 extends Remessax_Remessa {
+class BB240 extends Remessa {
 
 	private $lote = '0001';
 	private $remessa_id;

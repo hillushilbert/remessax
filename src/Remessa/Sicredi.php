@@ -1,10 +1,15 @@
 <?php
 
+namespace Skynix\Remessax\Remessa;
+
+use Skynix\Remessax\Remessa;
+
+
 /*
 * @descr: Gera o arquivo de remessa para cobranca no padrao CNAB 400 Santander 2017
 */
 
-class Remessax_Remessa_Sicredi extends Remessax_Remessa {
+class Sicredi extends Remessa {
     
     
     private function calcNossoNumero($id_parcela){

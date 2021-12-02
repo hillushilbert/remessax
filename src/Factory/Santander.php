@@ -1,6 +1,11 @@
 <?php
 
-class Remessax_Factory_Santander extends Remessax_Factory {
+namespace Skynix\Remessax\Factory;
+
+use Skynix\Remessax\Factory;
+use Skynix\Remessax\Remessa\Santander as RemessaSantander;
+
+class Santander extends Factory {
 
 	protected function createRemessa(){
 		
@@ -8,7 +13,7 @@ class Remessax_Factory_Santander extends Remessax_Factory {
 
 		$titulos = $this->getTitulos();
 		
-		$remessa = new Remessax_Remessa_Santander($config,$titulos);
+		$remessa = new RemessaSantander($config,$titulos);
 		return $remessa;	
 	}
 	

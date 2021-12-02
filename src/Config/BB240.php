@@ -1,6 +1,10 @@
 <?php
 
-class Remessax_Config_BB240 extends Remessax_Config {
+namespace Skynix\Remessax\Config;
+
+use Skynix\Remessax\Config;
+
+class BB240 extends Config {
 
 	//public $mensagem;
 	public $cod_convenio;

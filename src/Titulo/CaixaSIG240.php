@@ -1,6 +1,10 @@
 <?php
 
-class Remessax_Titulo_CaixaSIG240 extends Remessax_Titulo {
+namespace Skynix\Remessax\Titulo;
+
+use Skynix\Remessax\Titulo;
+
+class CaixaSIG240 extends Titulo {
 	
 	public $vencimento_antecipado;
 	public $valor_antecipado;

@@ -1,6 +1,10 @@
 <?php
 
-class Remessax_Config_CaixaSIG240 extends Remessax_Config {
+namespace Skynix\Remessax\Config;
+
+use Skynix\Remessax\Config;
+
+class CaixaSIG240 extends Config {
 
 	public $mensagem;
 	public $conta_cedente;

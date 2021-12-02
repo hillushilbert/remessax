@@ -1,6 +1,11 @@
 <?php
 
-class Remessax_Config_Bradesco extends Remessax_Config {
+namespace Skynix\Remessax\Config;
+
+use Skynix\Remessax\Config;
+
+
+class Bradesco extends Config {
 
 	public $mensagem;
 	public $cod_empresa;

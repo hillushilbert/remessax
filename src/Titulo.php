@@ -1,6 +1,8 @@
 <?php
 
-abstract class Remessax_Titulo {
+namespace Skynix\Remessax;
+
+abstract class Titulo {
 
 	public $tipo;
 	public $cpf;

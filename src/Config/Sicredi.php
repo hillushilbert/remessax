@@ -1,6 +1,10 @@
 <?php
 
-class Remessax_Config_Sicredi extends Remessax_Config {
+namespace Skynix\Remessax\Config;
+
+use Skynix\Remessax\Config;
+
+class Sicredi extends Config {
     
     public $posto;
 	public $byte;

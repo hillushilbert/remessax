@@ -1,12 +1,16 @@
 <?php
 
-class Remessax_Retorno_Exception extends Exception { }
+namespace Skynix\Remessax;
+
+use Exception;
+
+class RetornoException extends Exception { }
 
 /*
 * @descr: Gera o arquivo de remessa para cobranca no padrao CNAB 400 vers. 7.0 ITAU
 */
 
-abstract class Remessax_Retorno {
+abstract class Retorno {
 
 	protected $xmlLayout;
 	protected $handle;
@@ -25,13 +29,13 @@ abstract class Remessax_Retorno {
 
 		
 		if(!is_file($xmlPath))
-		throw new Remessax_Retorno_Exception("Arquivo de Laytout nao encontrado! {$xmlPath}");
+		throw new RetornoException("Arquivo de Laytout nao encontrado! {$xmlPath}");
 		
 		// Layout do arquivo de remessas
 		$this->xmlLayout = simplexml_load_file($xmlPath);	
 		
 		if(!is_file($fileName))
-		throw new Remessax_Retorno_Exception("Arquivo de remessa invalido! {$fileName}");
+		throw new RetornoException("Arquivo de remessa invalido! {$fileName}");
 	
 	
 		// Handle do arquivo de retorno

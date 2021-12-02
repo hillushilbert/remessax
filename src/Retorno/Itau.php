@@ -1,28 +1,32 @@
 <?php
 
-class Remessax_Retorno_Itau extends Remessax_Retorno {
+namespace Skynix\Remessax\Retorno;
+
+use Skynix\Remessax\Retorno;
+
+class Itau extends Retorno {
 
 
 	protected function readHeader($line){
 		$header = $this->loadTag('Header',$line);
 		
 		/*	
-		001 a 001 Identificação do Registro 001 0 X
-		002 a 002 Identificação do Arquivo Retorno 001 2 X
+		001 a 001 Identificaï¿½ï¿½o do Registro 001 0 X
+		002 a 002 Identificaï¿½ï¿½o do Arquivo Retorno 001 2 X
 		003 a 009 Literal Retorno 007 Retorno X
-		010 a 011 Código do Serviço 002 01 X
-		012 a 026 Literal Serviço 015 Cobrança X
-		027 a 046 Código da Empresa 020 Nº Empresa X
-		047 a 076 Nome da Empresa por Extenso 030 Razão Social X
-		077 a 079 Nº do Bradesco na Câmara Compensação 003 237 X
+		010 a 011 Cï¿½digo do Serviï¿½o 002 01 X
+		012 a 026 Literal Serviï¿½o 015 Cobranï¿½a X
+		027 a 046 Cï¿½digo da Empresa 020 Nï¿½ Empresa X
+		047 a 076 Nome da Empresa por Extenso 030 Razï¿½o Social X
+		077 a 079 Nï¿½ do Bradesco na Cï¿½mara Compensaï¿½ï¿½o 003 237 X
 		080 a 094 Nome do Banco por Extenso 015 Bradesco X
-		095 a 100 Data da Gravação do Arquivo 006 DDMMAA X
-		101 a 108 Densidade de Gravação 008 01600000 X
-		109 a 113 Nº Aviso Bancário 005 Nº aviso X
+		095 a 100 Data da Gravaï¿½ï¿½o do Arquivo 006 DDMMAA X
+		101 a 108 Densidade de Gravaï¿½ï¿½o 008 01600000 X
+		109 a 113 Nï¿½ Aviso Bancï¿½rio 005 Nï¿½ aviso X
 		114 a 379 Branco 266 Branco
-		380 a 385 Data do Crédito 006 DDMMAA X
+		380 a 385 Data do Crï¿½dito 006 DDMMAA X
 		386 a 394 Branco 009 Branco
-		395 a 400 Nº Seqüencial de registro 006 000001 X
+		395 a 400 Nï¿½ Seqï¿½encial de registro 006 000001 X
 		*/
 		
 		$header->dta_arquivo = $this->formatDate($header->dta_arquivo);

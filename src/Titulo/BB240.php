@@ -1,6 +1,10 @@
 <?php
 
-class Remessax_Titulo_BB240 extends Remessax_Titulo {
+namespace Skynix\Remessax\Titulo;
+
+use Skynix\Remessax\Titulo;
+
+class BB240 extends Titulo {
 
 	public $cod_movimento;
 	public $vencimento_antecipado;

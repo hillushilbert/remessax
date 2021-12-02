@@ -1,10 +1,15 @@
 <?php
 
+namespace Skynix\Remessax\Remessa;
+
+use Skynix\Remessax\Remessa;
+
+
 /*
 * @descr: Gera o arquivo de remessa para cobranca no padrao CNAB 400 vers. 7.0 ITAU
 */
 
-class Remessax_Remessa_Bradesco extends Remessax_Remessa {
+class Bradesco extends Remessa {
 
 	private $idEmpresa;
 	public  $teste = false;
@@ -21,24 +26,24 @@ class Remessax_Remessa_Bradesco extends Remessax_Remessa {
 		
 		## REGISTRO HEADER	
 																		#NOME DO CAMPO        #SIGNIFICADO            	#POSICAO    #PICTURE
-		$conteudo .= '0';             									//001 a 001		Identificação do Registro			001			0						X	
-		$conteudo .= 1;             									//002 a 002		Identificação do Arquivo Remessa	001			1				X
+		$conteudo .= '0';             									//001 a 001		Identificaï¿½ï¿½o do Registro			001			0						X	
+		$conteudo .= 1;             									//002 a 002		Identificaï¿½ï¿½o do Arquivo Remessa	001			1				X
 		$conteudo .= 'REMESSA';        									//003 a 009		Literal Remessa						007			REMESSA			X
-		$conteudo .= '01';            									//010 a 011		Código de Serviço					002			01			X
-		$conteudo .= $this->limit('COBRANCA',15);    					//012 a 026		Literal Serviço						015			COBRANCA			X
-		$conteudo .= $this->formatNumber($config->cod_empresa,20);		//027 a 046		Código da Empresa					020			Será fornecido pelo Bradesco, quando do Cadastramento Vide Obs. Pág. 16			X
-		$conteudo .= $this->formatString($config->razao_social,30);		//047 a 076		Nome da Empresa						030			Razão Social			X
-		$conteudo .= '237';												//077 a 079		N. Bradesco Câmara de Compensação	003			237			X
+		$conteudo .= '01';            									//010 a 011		Cï¿½digo de Serviï¿½o					002			01			X
+		$conteudo .= $this->limit('COBRANCA',15);    					//012 a 026		Literal Serviï¿½o						015			COBRANCA			X
+		$conteudo .= $this->formatNumber($config->cod_empresa,20);		//027 a 046		Cï¿½digo da Empresa					020			Serï¿½ fornecido pelo Bradesco, quando do Cadastramento Vide Obs. Pï¿½g. 16			X
+		$conteudo .= $this->formatString($config->razao_social,30);		//047 a 076		Nome da Empresa						030			Razï¿½o Social			X
+		$conteudo .= '237';												//077 a 079		N. Bradesco Cï¿½mara de Compensaï¿½ï¿½o	003			237			X
 		$conteudo .= $this->limit('BRADESCO',15); 						//080 a 094		Nome do Banco por Extenso			015			Bradesco			X
-		$conteudo .= $this->formatData();								//095 a 100		Data da Gravação do Arquivo			006			DDMMAA			Vide Obs. Pág. 16 X
+		$conteudo .= $this->formatData();								//095 a 100		Data da Gravaï¿½ï¿½o do Arquivo			006			DDMMAA			Vide Obs. Pï¿½g. 16 X
 		$conteudo .= $this->complementoRegistro(8,"brancos");			//101 a 108		Branco								008			Branco			X
-		$conteudo .= 'MX';       										//109 a 110		Identificação do sistema			002			MX			Vide Obs. Pág. 16 X
-		// preciso recuperar essa informação antes de chegar aqui
+		$conteudo .= 'MX';       										//109 a 110		Identificaï¿½ï¿½o do sistema			002			MX			Vide Obs. Pï¿½g. 16 X
+		// preciso recuperar essa informaï¿½ï¿½o antes de chegar aqui
 		// TODO = 25/03/2019
-		$conteudo .= $this->sequencial($this->seq_remessa,7);      		//111 a 117		Nº Seqüencial de Remessa			007			Seqüencial			Vide Obs. Pág. 16 X
+		$conteudo .= $this->sequencial($this->seq_remessa,7);      		//111 a 117		Nï¿½ Seqï¿½encial de Remessa			007			Seqï¿½encial			Vide Obs. Pï¿½g. 16 X
 		$conteudo .= $this->complementoRegistro(277,"brancos");			//118 a 394		Branco								277			Branco			X
-		$conteudo .= $this->sequencial(1);        						//395 a 400		Nº Seqüencial do Registro 			006			000001			X
-		$conteudo .= chr(13).chr(10); 									//essa é a quebra de linha
+		$conteudo .= $this->sequencial(1);        						//395 a 400		Nï¿½ Seqï¿½encial do Registro 			006			000001			X
+		$conteudo .= chr(13).chr(10); 									//essa ï¿½ a quebra de linha
 
 		$this->conteudo = $conteudo;
 	}
@@ -47,7 +52,7 @@ class Remessax_Remessa_Bradesco extends Remessax_Remessa {
 	/**
 	 * setFileName
 	 *
-	 * Define o nome do arquivo de remessa que será gerado
+	 * Define o nome do arquivo de remessa que serï¿½ gerado
 	 *
 	 * @return void
 	 */
@@ -116,57 +121,57 @@ class Remessax_Remessa_Bradesco extends Remessax_Remessa {
 			$cliente->cod_movimento = !empty($cliente->cod_movimento) ? $cliente->cod_movimento : '01';
 			
 																	//#NOM            #SIGNIFICADO            						#POSICAO    #PICTURE
-			$conteudo .= 1;                                    		// 001 a 001	Identificação do Registro						001			1			X
-			$conteudo .= $this->complementoRegistro(5,"brancos");	// 002 a 006	Agência de Débito (opcional)					005			Código da Agência do Pagador Exclusivo para Débito em Conta			Vide Obs. Pág. 16 X
-			$conteudo .= $this->complementoRegistro(1,"brancos");	// 007 a 007	Dígito da Agência de Débito (opcional)			001	        9(14)
-			$conteudo .= $this->complementoRegistro(5,"brancos");   // 008 a 012	Razão da Conta Corrente (opcional)				005        9(04)
+			$conteudo .= 1;                                    		// 001 a 001	Identificaï¿½ï¿½o do Registro						001			1			X
+			$conteudo .= $this->complementoRegistro(5,"brancos");	// 002 a 006	Agï¿½ncia de Dï¿½bito (opcional)					005			Cï¿½digo da Agï¿½ncia do Pagador Exclusivo para Dï¿½bito em Conta			Vide Obs. Pï¿½g. 16 X
+			$conteudo .= $this->complementoRegistro(1,"brancos");	// 007 a 007	Dï¿½gito da Agï¿½ncia de Dï¿½bito (opcional)			001	        9(14)
+			$conteudo .= $this->complementoRegistro(5,"brancos");   // 008 a 012	Razï¿½o da Conta Corrente (opcional)				005        9(04)
 			$conteudo .= $this->complementoRegistro(7,"brancos");	// 013 a 019	Conta Corrente (opcional)						007	
-			$conteudo .= $this->complementoRegistro(1,"brancos");	// 020 a 020	Dígito da Conta Corrente (opcional)				001
-			$conteudo .= $this->getIdEmpresa();                     // 021 a 037	Identificação da Empresa Beneficiária no Banco	017	
-			$conteudo .= $this->formatString($cliente->id_titulo,25,'0');	 // 038 a 062	Nº Controle do Participante						025	
-			$conteudo .= '237';       								// 063 a 065		Código do Banco									003
+			$conteudo .= $this->complementoRegistro(1,"brancos");	// 020 a 020	Dï¿½gito da Conta Corrente (opcional)				001
+			$conteudo .= $this->getIdEmpresa();                     // 021 a 037	Identificaï¿½ï¿½o da Empresa Beneficiï¿½ria no Banco	017	
+			$conteudo .= $this->formatString($cliente->id_titulo,25,'0');	 // 038 a 062	Nï¿½ Controle do Participante						025	
+			$conteudo .= '237';       								// 063 a 065		Cï¿½digo do Banco									003
 			if($config->mora > 0)
 				$conteudo .= '2';              						// 066 a 066		Campo de Multa									001		
 			else
 				$conteudo .= '0';              						// 066 a 066		Campo de Multa	
 			$conteudo .= $this->formatValor($config->mora,4);     	// 067 a 070		Percentual de multa								004	
-			$conteudo .= $this->formatNumber($cliente->nosso_numero,11);   // 071 a 081		Identificação do Título no Banco				011
+			$conteudo .= $this->formatNumber($cliente->nosso_numero,11);   // 071 a 081		Identificaï¿½ï¿½o do Tï¿½tulo no Banco				011
 			$conteudo .= $this->getDvNossoNumero($cliente->nosso_numero);                 // ???            
-			$conteudo .= $this->complementoRegistro(10,"zeros");     // 083 a 092		Desconto Bonificação por dia					010	
-			$conteudo .= $this->limit($config->cod_emissao,1);       // 093 a 093		Condição para Emissão da Papeleta de Cobrança	001			
-			$conteudo .= 'N';                                 		 // 094 a 094		Ident. se emite Boleto para Débito Automático	001			N= Não registra na cobrança. Diferente de N registra e emite Boleto.
-			$conteudo .= $this->limit('',10);                        // 095 a 104		Identificação da Operação do Banco				010			Brancos	
-			$conteudo .= ' ';                             			 // 105 a 105		Indicador Rateio Crédito (opcional)				001			"R"			Vide Obs. Pág. 19 X
-			$conteudo .= '2';                      					 // 106 a 106		Endereçamento p/ Aviso Débito Automático		001			Vide Obs. Pág. 19
+			$conteudo .= $this->complementoRegistro(10,"zeros");     // 083 a 092		Desconto Bonificaï¿½ï¿½o por dia					010	
+			$conteudo .= $this->limit($config->cod_emissao,1);       // 093 a 093		Condiï¿½ï¿½o para Emissï¿½o da Papeleta de Cobranï¿½a	001			
+			$conteudo .= 'N';                                 		 // 094 a 094		Ident. se emite Boleto para Dï¿½bito Automï¿½tico	001			N= Nï¿½o registra na cobranï¿½a. Diferente de N registra e emite Boleto.
+			$conteudo .= $this->limit('',10);                        // 095 a 104		Identificaï¿½ï¿½o da Operaï¿½ï¿½o do Banco				010			Brancos	
+			$conteudo .= ' ';                             			 // 105 a 105		Indicador Rateio Crï¿½dito (opcional)				001			"R"			Vide Obs. Pï¿½g. 19 X
+			$conteudo .= '2';                      					 // 106 a 106		Endereï¿½amento p/ Aviso Dï¿½bito Automï¿½tico		001			Vide Obs. Pï¿½g. 19
 			$conteudo .= $this->complementoRegistro(2,"brancos"); 	 // 107 a 108		Branco											002			Branco			X        
-			$conteudo .= $this->formatNumber($cliente->cod_movimento,2); // 109 a 110		Identificação da ocorrência						002
-			$conteudo .= $this->limit($cliente->id_titulo,10);		 // 111 a 120		Nº do Documento									010
-			$conteudo .= $this->formatData($cliente->vencimento); 	 // 121 a 126		Data do Vencimento do Título					006
-			$conteudo .= $this->formatValor($cliente->valor,13);	 // 127 a 139		Valor do Título									013			
-			$conteudo .= $this->zeros(0,3);             			 // 140 a 142		Banco Encarregado da Cobrança					003
-			$conteudo .= $this->zeros(0,5);							 // 143 a 147		Agência Depositária								005			Preencher com zeros			X
-			$conteudo .= '01';										 // 148 a 149		Espécie de Título								002			01-Duplicata			02-Nota Promissória
-			$conteudo .= 'N';    									 // 150 a 150		Identificação									001			Sempre = N			X
-			$conteudo .= $this->formatData();						 // 151 a 156		Data da emissão do Título						006			DDMMAA			X
-			$conteudo .= $this->formatNumber($config->instrucao01,2);// 157 a 158		1ª instrução									002			Vide Obs. Pág. 20			X
-			$conteudo .= $this->formatNumber($config->instrucao02,2);// 159 a 160		2ª instrução									002			Vide Obs. Pág. 20			X
-			//$conteudo .= $this->formatValor($config->mora,13);	 // 161 a 173		Valor a ser cobrado por Dia de Atraso			013			Mora por Dia de Atraso Vide obs. Pág. 21
+			$conteudo .= $this->formatNumber($cliente->cod_movimento,2); // 109 a 110		Identificaï¿½ï¿½o da ocorrï¿½ncia						002
+			$conteudo .= $this->limit($cliente->id_titulo,10);		 // 111 a 120		Nï¿½ do Documento									010
+			$conteudo .= $this->formatData($cliente->vencimento); 	 // 121 a 126		Data do Vencimento do Tï¿½tulo					006
+			$conteudo .= $this->formatValor($cliente->valor,13);	 // 127 a 139		Valor do Tï¿½tulo									013			
+			$conteudo .= $this->zeros(0,3);             			 // 140 a 142		Banco Encarregado da Cobranï¿½a					003
+			$conteudo .= $this->zeros(0,5);							 // 143 a 147		Agï¿½ncia Depositï¿½ria								005			Preencher com zeros			X
+			$conteudo .= '01';										 // 148 a 149		Espï¿½cie de Tï¿½tulo								002			01-Duplicata			02-Nota Promissï¿½ria
+			$conteudo .= 'N';    									 // 150 a 150		Identificaï¿½ï¿½o									001			Sempre = N			X
+			$conteudo .= $this->formatData();						 // 151 a 156		Data da emissï¿½o do Tï¿½tulo						006			DDMMAA			X
+			$conteudo .= $this->formatNumber($config->instrucao01,2);// 157 a 158		1ï¿½ instruï¿½ï¿½o									002			Vide Obs. Pï¿½g. 20			X
+			$conteudo .= $this->formatNumber($config->instrucao02,2);// 159 a 160		2ï¿½ instruï¿½ï¿½o									002			Vide Obs. Pï¿½g. 20			X
+			//$conteudo .= $this->formatValor($config->mora,13);	 // 161 a 173		Valor a ser cobrado por Dia de Atraso			013			Mora por Dia de Atraso Vide obs. Pï¿½g. 21
 			$valorJurosDia = ($config->juros / 100) * $cliente->valor;
-			$conteudo .= $this->formatValor($valorJurosDia,13);		 // 161 a 173		Valor a ser cobrado por Dia de Atraso			013			Mora por Dia de Atraso Vide obs. Pág. 21
-			$conteudo .= $this->formatData($cliente->dataDesconto);  // 174 a 179		Data Limite P/Concessão de Desconto				006			DDMMAA			X
+			$conteudo .= $this->formatValor($valorJurosDia,13);		 // 161 a 173		Valor a ser cobrado por Dia de Atraso			013			Mora por Dia de Atraso Vide obs. Pï¿½g. 21
+			$conteudo .= $this->formatData($cliente->dataDesconto);  // 174 a 179		Data Limite P/Concessï¿½o de Desconto				006			DDMMAA			X
 			$conteudo .= $this->formatValor($cliente->valorDesconto,13);// 180 a 192	Valor do Desconto								013			Valor Desconto			X
-			$conteudo .= $this->zeros(0,13);						 // 193 a 205		Valor do IOF									013			Valor do IOF – Vide Obs. Pág. 21		
+			$conteudo .= $this->zeros(0,13);						 // 193 a 205		Valor do IOF									013			Valor do IOF ï¿½ Vide Obs. Pï¿½g. 21		
 			$conteudo .= $this->zeros(0,13);    					 // 206 a 218		Valor do Abatimento a conceder ou cancelar		013			Valor Abatimento			X
-			$conteudo .= '01';    									 // 219 a 220		Identificação do Tipo de Inscrição do Pagador	002			01-CPF			02-CNPJ
-			$conteudo .= $this->zeros($cliente->cpf,14);    		 // 221 a 234		Nº Inscrição do Pagador							014			CNPJ/ CPF - Vide Obs. Pág. 21			X
+			$conteudo .= '01';    									 // 219 a 220		Identificaï¿½ï¿½o do Tipo de Inscriï¿½ï¿½o do Pagador	002			01-CPF			02-CNPJ
+			$conteudo .= $this->zeros($cliente->cpf,14);    		 // 221 a 234		Nï¿½ Inscriï¿½ï¿½o do Pagador							014			CNPJ/ CPF - Vide Obs. Pï¿½g. 21			X
 			$conteudo .= $this->formatString($cliente->nome,40);			// 235 a 274		Nome do Pagador									040			Nome do Pagador			X       
-			$conteudo .= $this->formatString($cliente->endereco,40);    	// 275 a 314		Endereço Completo								040			Endereço do Pagador			X
-			$conteudo .= $this->formatString(substr($config->mensagem,0,12),12);    	// 315 a 326		1ª Mensagem										012			Vide Obs. Pág. 22			X
+			$conteudo .= $this->formatString($cliente->endereco,40);    	// 275 a 314		Endereï¿½o Completo								040			Endereï¿½o do Pagador			X
+			$conteudo .= $this->formatString(substr($config->mensagem,0,12),12);    	// 315 a 326		1ï¿½ Mensagem										012			Vide Obs. Pï¿½g. 22			X
 			$conteudo .= $this->formatString(substr($cliente->cep,0,5),5); // 327 a 331		CEP												005			CEP Pagador			X
 			$conteudo .= $this->formatString(substr($cliente->cep,5,3),3); // 332 a 334		Sufixo do CEP									003			Sufixo			X        
-			$conteudo .= $this->formatString(substr($config->mensagem,12),60);  // 335 a 394		Sacador/Avalista ou	2ª Mensagem					060			Decomposição Vide Obs. Pág. 22 X          
-			$conteudo .= $this->sequencial($i++);            		// 395 a 400		Nº Seqüencial do Registro						006			Nº Seqüencial do Registro			X
-			$conteudo .= chr(13).chr(10); 							//essa é a quebra de linha
+			$conteudo .= $this->formatString(substr($config->mensagem,12),60);  // 335 a 394		Sacador/Avalista ou	2ï¿½ Mensagem					060			Decomposiï¿½ï¿½o Vide Obs. Pï¿½g. 22 X          
+			$conteudo .= $this->sequencial($i++);            		// 395 a 400		Nï¿½ Seqï¿½encial do Registro						006			Nï¿½ Seqï¿½encial do Registro			X
+			$conteudo .= chr(13).chr(10); 							//essa ï¿½ a quebra de linha
 			$this->val_total += $cliente->valor;
 
 			$this->tot_linhas++;		
