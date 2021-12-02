@@ -1,0 +1,45 @@
+<root>
+	<Header>
+		<field name="id_registro" start="1" size="1" default="0" type="N" />
+		<field name="id_arquivo" start="2" size="1" default="2" type="N" />
+		<field name="cod_empresa" start="27" size="20" default="" type="N" />
+		<field name="cod_empresa" start="47" size="30" default="" type="A" />
+		<field name="cod_banco" start="77" size="3" default="237" type="N" />
+		<field name="nom_banco" start="80" size="15" default="Bradesco" type="A" />
+		<field name="dta_arquivo" start="95" size="6" default="" type="D" />
+		<field name="dta_credito" start="380" size="6" default="" type="D" />
+		<field name="sequencial" start="395" size="6" default="000001" type="N" />	
+	</Header>
+	<Titulo>
+		<field name="id_registro" start="1" size="1" default="" type="N" />
+		<field name="tp_empresa" start="2" size="2" default="" type="N" />
+		<field name="cnpj" start="4" size="14" default="" type="N" />
+		<field name="cod_empresa" start="21" size="17" default="" type="A" />
+		<field name="num_titulo" start="38" size="25" default="" type="N" />
+		<field name="id_parcela" start="71" size="12" default="" type="N" />
+		<field name="carteira" start="108" size="1" default="" type="N" />
+		<field name="id_ocorrencia" start="109" size="2" default="" type="N" />
+		<field name="dt_ocorrencia" start="111" size="6" default="" type="D" />
+		<field name="num_doc" start="117" size="10" default="" type="N" />
+		<field name="num_titulo_bco" start="127" size="20" default="" type="N" />
+		<field name="dt_vencimento" start="147" size="6" default="" type="D" />
+		<field name="vl_titulo" start="153" size="13" default="" type="N" />
+		<field name="banco_cobrador" start="166" size="3" default="" type="N" />
+		<field name="agencia_cobrador" start="169" size="5" default="" type="N" />
+		<field name="despesas_013" start="176" size="13" default="" type="N" />
+		<field name="despesas_out" start="189" size="13" default="" type="N" />
+		<field name="iof" start="215" size="13" default="" type="N" />
+		<field name="abatimento_013" start="228" size="13" default="" type="N" />
+		<field name="desconto" start="241" size="13" default="" type="N" />
+		<field name="valor_pago" start="254" size="13" default="" type="N" />
+		<field name="juros_mora" start="267" size="13" default="" type="N" />
+		<field name="motivo_ocorr_19" start="295" size="1" default="" type="N" />
+		<field name="data_credito" start="296" size="6" default="" type="D" />
+		<field name="ori_pagamento" start="302" size="3" default="" type="N" />
+		<field name="mot_rejeicao" start="319" size="10" default="" type="N" />
+		<field name="num_cartorio" start="369" size="2" default="" type="N" />
+		<field name="num_protocolo" start="371" size="10" default="" type="N" />
+		<field name="num_protocolo" start="371" size="10" default="" type="N" />
+		<field name="sequencial" start="395" size="6" default="" type="N" />
+	</Titulo>
+</root>

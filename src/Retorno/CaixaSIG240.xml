@@ -1,0 +1,51 @@
+<root>
+	<Header>
+		<field name="cod_banco" start="1" size="3" default="104" type="N" />
+		<field name="id_arquivo" start="158" size="6" default="0000" type="N" />
+		<field name="id_registro" start="8" size="1" default="0" type="N" />
+		<field name="agendia" start="53" size="5" default="" type="N" />
+		<field name="conta" start="59" size="6" default="" type="N" />
+		<field name="dac" start="38" size="1" default="" type="N" />
+		<field name="nome_empresa" start="73" size="30" default="" type="A" />
+		<field name="nom_banco" start="103" size="30" default="" type="A" />
+		<field name="dta_credito" start="144" size="8" default="" type="N" />
+		<field name="dta_arquivo" start="144" size="8" default="" type="N" />
+		<field name="sequencial" start="9" size="6" default="000001" type="N" />	
+	</Header>
+		/* Pag. 24 */
+	<SegmentoT>
+		<field name="cod_banco" start="1" size="3" default="104" type="N" ref="G001" />
+		<field name="lote" start="4" size="4" default="" type="N" ref="G002" />
+		<field name="tp_registro" start="8" size="1" default="3" type="N" ref="G003" />
+		<field name="num_registro" start="9" size="5" default="3" type="N" ref="G038" />
+		<field name="segmento" start="14" size="1" default="T" type="A" ref="G039" />
+		<field name="cod_movimento" start="16" size="2" default="" type="N" ref="C044" />
+		<field name="cod_cedente" start="24" size="6" default="" type="N" ref="G007" />
+		<field name="nosso_numero" start="42" size="15" default="" type="N" ref="G069" />
+		<field name="id_parcela" start="42" size="15" default="" type="N" ref="G069" />
+		<field name="carteira" start="58" size="1" default="" type="N" ref="C006" />	
+		<field name="dt_vencimento" start="74" size="8" default="" type="D" ref="C012" />
+		<field name="vl_titulo" start="82" size="15" default="" type="N" ref="G070" />
+		<field name="mt_ocorrencia" start="214" size="10" default="" type="A" ref="C047" />
+		<field name="sacado_cpf" start="134" size="15" default="" type="N" ref="C047" />
+	</SegmentoT>
+	
+/*		$titulo->id_parcela   = (int)substr($titulo->id_parcela,0,-1);
+		$titulo->valor_pago   = $this->formatNumber($titulo->valor_pago);
+		$titulo->vl_titulo    = $this->formatNumber($titulo->vl_titulo);
+		$titulo->desconto     = $this->formatNumber($titulo->desconto);
+		$titulo->juros_mora   = $this->formatNumber($titulo->juros_mora);
+		$titulo->data_credito = $this->formatDate($titulo->data_credito);
+		$titulo->dt_ocorrencia = $this->formatDate($titulo->dt_ocorrencia);
+*/		
+	<SegmentoU>
+		<field name="segmento" start="14" size="1" default="T" type="A" ref="G039" />
+		<field name="tp_registro" start="8" size="1" default="3" type="N" ref="G003" />
+		<field name="valor_pago" start="78" size="15" default="" type="N" ref="G002" />
+		<field name="desconto" start="33" size="15" default="" type="N" ref="G038" />
+		<field name="juros_mora" start="18" size="15" default="" type="N" ref="G076" />
+		<field name="data_credito" start="146" size="8" default="" type="A" ref="G039" />
+		<field name="dt_ocorrencia" start="138" size="8" default="" type="A" ref="G039" />
+		<field name="cod_cedente" start="166" size="15" default="" type="N" ref="G007" />
+	</SegmentoU>	
+</root>

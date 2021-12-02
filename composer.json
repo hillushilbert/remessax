@@ -1,0 +1,30 @@
+{
+    "name": "hillus/skynix",
+    "description": "Remessax is a libraby that create remessa files",
+    "type": "library",
+    "require": {
+        "php": "^7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5",
+        "mockery/mockery": "^1.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Skynix\\Remessax\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Skynix\\Remessax\\Tests\\": "tests"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hillus Hilbert",
+            "email": "hillus.hilbert@codding.com.br"
+        }
+    ],
+    "minimum-stability": "dev"
+}
